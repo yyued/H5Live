@@ -1,37 +1,32 @@
-## Welcome to GitHub Pages
+## H5Live
 
-You can use the [editor on GitHub](https://github.com/yyued/H5Live/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+为了提升品牌影响的影响力和推广产品，H5直播间已经成为了一款直播产品的必备要素。在网络直播盛行的这个风口浪尖，直播产品的模式越来越成熟，一个直播间所需要的元素和交互已经形成了稳定的模式。于是，你没理由完全要自己手动搭建一个H5直播间，因为H5Live提供了一套成熟稳定的H5直播间方案：
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+1. 组件化、配置化搭建，5分钟快速上手；
+2. 涵盖公屏、大礼物、小礼物、弹幕、点赞等功能模块；
+3. 配备高性能的礼物动画方案；
 
-### Markdown
+![h5live](https://user-images.githubusercontent.com/1295348/31772948-c3eb733e-b4a6-11e7-83a8-2fbce55a62f8.png)
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
 
-```markdown
-Syntax highlighted code block
+### 入门
 
-# Header 1
-## Header 2
-### Header 3
+为了加快开发效率，推荐你使用开箱即用的[LegoFlow](https://legoflow.com/)进行开发。当然，你也可以自己配置webpack进行开发，只需要支持ES6编译和SASS loader即可。
 
-- Bulleted
-- List
+#### 目录结构
 
-1. Numbered
-2. List
+````
+js/
+├── component //组件
+|   ├── palyer
+|   ├── ...
+│   └── top-bar
+├── lib //第三方库
+├── public //公共，例如api，全局配置，工具等
+└── main.js //主入口
+````
 
-**Bold** and _Italic_ and `Code` text
+### Issues
 
-[Link](url) and ![Image](src)
-```
+如有使用问题或建议，欢迎提issues
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/yyued/H5Live/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
