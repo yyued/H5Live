@@ -4,6 +4,8 @@
 2. 涵盖公屏、大礼物、小礼物、弹幕、点赞等功能模块；
 3. 配备高性能的礼物动画方案；
 
+----
+
 ![h5live](https://user-images.githubusercontent.com/1295348/31772948-c3eb733e-b4a6-11e7-83a8-2fbce55a62f8.png)
 
 
