@@ -10,6 +10,7 @@ import danmaku from './component/danmaku/index.js';
 import message from './component/message/index.js';
 import giftLit from './component/gift/gift-lit/index.js';
 import giftLarge from './component/gift/gift-large/index.js';
+import like from './component/like/index.js';
 
 // 直播间基础信息准备就绪
 RequqestApi.getLiveData().then((liveData)=>{
@@ -39,6 +40,9 @@ RequqestApi.getLiveData().then((liveData)=>{
             giftLarge.init(giftSocket, giftMapObj);
         });
 
+        // 点赞
+        like.init();
+
 
         player.listenLiveStatus((status)=>{
             if (status) return;
@@ -47,6 +51,7 @@ RequqestApi.getLiveData().then((liveData)=>{
             message.destroy();
             giftLit.destroy();
             giftLarge.destroy();
+            like.destroy();
             console.log('直播结束');
         });
     });

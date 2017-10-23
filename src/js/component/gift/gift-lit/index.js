@@ -6,7 +6,7 @@
 import sprite from '../../../lib/sprite/index.js'; // 礼物动画
 import combo from './lib/combo.js'; // 礼物连击
 import style from'./style/index.scss';
-import createTpl from './tpl/index.tpl';
+import createTpl from './tpl/index.js';
 
 const componentGift = document.querySelector('[data-component="gift"]');
 componentGift.innerHTML = `<style>${style}</style>`;
@@ -231,11 +231,11 @@ export default {
         });
 
         // 礼物面板送礼优先显示
-        this.unShiftQueue = (data) => {
-            main.giftHandle(data, giftMapObj, giftLit, function() {
-                main.addQueue(data, giftMapObj, giftLit, false);
-            })
-        };
+        // this.unShiftQueue = (data) => {
+        //     main.giftHandle(data, giftMapObj, giftLit, function() {
+        //         main.addQueue(data, giftMapObj, giftLit, false);
+        //     })
+        // };
     },
     destroy () {
         componentGift.style['display'] = 'none';

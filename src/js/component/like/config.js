@@ -11,6 +11,26 @@ let config = {
 
     // 点赞区域高度
     wrapperHeight: 280,
+
+    // 点赞显示的图片
+    likeImg: {
+        user01     : require('../../../assets/like/heart/user/like01.png'),
+        user02     : require('../../../assets/like/heart/user/like02.png'),
+        user03     : require('../../../assets/like/heart/user/like03.png'),
+        audience01 : require('../../../assets/like/heart/audience/like01.png'),
+        audience02 : require('../../../assets/like/heart/audience/like02.png'),
+        audience03 : require('../../../assets/like/heart/audience/like03.png'),
+        audience04 : require('../../../assets/like/heart/audience/like04.png'),
+        audience05 : require('../../../assets/like/heart/audience/like05.png'),
+        audience06 : require('../../../assets/like/heart/audience/like06.png'),
+        audience07 : require('../../../assets/like/heart/audience/like07.png'),
+    },
+
+    // 自动显示点赞的图片数量
+    likeImgUserNum: 3,
+
+    // 用户点击显示点赞的图片数量
+    likeImgAudienceNum: 7,
 }
 
 export default config;

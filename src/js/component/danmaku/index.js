@@ -4,7 +4,7 @@
  */
 
 import style from'./style/index.scss';
-import createTpl from './tpl/index.tpl';
+import createTpl from './tpl/index.js';
 
 const danmakuElement = document.querySelector('[data-component="danmaku"]');
 danmakuElement.innerHTML = `<style>${ style }</style>`;
@@ -138,9 +138,9 @@ export default {
         });
 
         // 用户发弹幕优先显示
-        this.unShiftQueue = (danmakuItemObj) => {
-            main.addQueue(danmakuItemObj, danmaku, false);
-        }
+        // this.unShiftQueue = (danmakuItemObj) => {
+        //     main.addQueue(danmakuItemObj, danmaku, false);
+        // }
 
         // 销毁弹幕
         this.destroy = () => {

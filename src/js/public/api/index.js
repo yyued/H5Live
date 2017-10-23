@@ -17,11 +17,11 @@ let jsonpPromise = (url) => {
 }
 
 let socketPromise = (key, socketName) => {
-    let ioUrl = 'ws://legox.org:5353';
+    let ioUrl = 'http://legox.org:5353';
     let ioSocket = io.connect(ioUrl);
     return new Promise(( resolve ) => {
         let ioSocket = io.connect(ioUrl);
-        ioSocket.emit(socketName,{ key: key, time: 5000 });
+        ioSocket.emit(socketName,{ key: key, time: 8000 });
         resolve({
             ioSocket,
             socketName,
@@ -43,27 +43,13 @@ window.RequqestApi = {
 
     // 获取直播状态
     getLiveStatus(){
+        // return jsonpPromise('https://legox.org/mock/a3e67a40-863c-11e7-9085-0ba4558c07dc');
         return jsonpPromise('https://legox.org/mock/fbec5f60-b3c9-11e7-ba75-c111f832c2e3');
     },
 
-    // 获取礼物映射
-    getGiftMap() {
-        return jsonpPromise('https://legox.org/mock/10e15760-b53f-11e7-ba75-c111f832c2e3');
-    },
-
-    // 获取登录用户信息（预留）
+    // 获取登录用户信息
     getUserInfo(){
         return jsonpPromise('http://uedfe.yypm.com/mock/api/344');
-    },
-
-    // 获取小礼物
-    getGiftLit() {
-        return socketPromise('52741350-b541-11e7-ba75-c111f832c2e3', 'mock');
-    },
-
-    // 获取大礼物
-    getGiftLarge() {
-        return socketPromise('a11dce30-b56c-11e7-ba75-c111f832c2e3', 'mock');
     },
 
     // 获取弹幕
@@ -76,4 +62,18 @@ window.RequqestApi = {
         return socketPromise('4a2691b0-b4c8-11e7-ba75-c111f832c2e3', 'mock');
     },
 
+    // 获取礼物映射
+    getGiftMap() {
+        return jsonpPromise('https://legox.org/mock/10e15760-b53f-11e7-ba75-c111f832c2e3');
+    },
+
+    // 获取小礼物
+    getGiftLit() {
+        return socketPromise('52741350-b541-11e7-ba75-c111f832c2e3', 'mock');
+    },
+
+    // 获取大礼物
+    getGiftLarge() {
+        return socketPromise('a11dce30-b56c-11e7-ba75-c111f832c2e3', 'mock');
+    },
 }

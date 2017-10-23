@@ -6,7 +6,7 @@
 
 import scrollTo  from '../../lib/scrollTo/index.js';
 import style     from './style/index.scss';
-import createTpl from './tpl/index.tpl';
+import createTpl from './tpl/index.js';
 import config    from './config';
 
 const componentMessage = document.querySelector('[data-component="message"]');
@@ -54,7 +54,6 @@ export default {
         document.addEventListener('touchcancel', fadeOutFn, false);
         this.messageScreen.addEventListener('scroll', () => {
             let { scrollTop, scrollHeight, offsetHeight } = this.messageScreen;
-            // console.log(scrollTop + offsetHeight - scrollHeight);
             if ((scrollTop + offsetHeight) >= (scrollHeight - 1)) {
                 autoScrollToBottom = true;
                 if (tipsShowing) {
@@ -122,7 +121,6 @@ export default {
                 length--;
             }
         }
-        // console.log(length);
         this.messageList.appendChild(messages.firstElementChild);
         if (autoScrollToBottom) {
             scrollTo('bottom', {
@@ -152,11 +150,8 @@ export default {
         this.add(`<span class="is-follow">${ nickname } 关注了 ${ anchorName }</span>`, true);
     },
     destroy () {
-        return new Promise(( resolve ) => {
-            clearInterval(this.sid);
-            componentMessage.innerHTML = '';
-            resolve();
-        }).catch((err) => console.log(err));
+        clearInterval(this.sid);
+        componentMessage.innerHTML = '';
     },
     show () {
         componentMessage.classList.remove('fade-out');
