@@ -1,0 +1,82 @@
+body {
+    padding-top: 1.05rem;
+}
+
+.live-topBar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 1.05rem;
+    overflow: hidden;
+    user-select: none;
+    // padding: .13rem 0;
+    // border-bottom: .02rem solid #7b7360;
+    background: #2e2e2e;
+    // background: rgba(46, 46, 46, 0.8);
+    &::before {
+        position: absolute;
+        left: .28rem;
+        top: 50%;
+        transform: translate(0, -50%);
+        // margin-top: .01rem;
+        content: '';
+        width: .76rem;
+        height: .76rem;
+        background: url(../img/app-logo.png) 0 0 no-repeat;
+        background-size: cover;
+    }
+    &::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        left: 0;
+        bottom: 0;
+        background-color: #7b7360;
+        transform: scaleY(.5);
+    }
+}
+.live-topBar__cnt {
+    padding-left: 1.33rem;
+    font-size: .24rem;
+    height: .24rem;
+    line-height: .24rem;
+    color: #fff;
+    &:first-of-type {
+        margin-top: .25rem;
+        margin-bottom: .1rem;
+    }
+}
+.live-topBar__btn {
+    position: absolute;
+    right: .25rem;
+    top: 50%;
+    transform: translate(0, -50%);
+    width: 2.43rem;
+    height: .66rem;
+    // line-height: .66rem;
+    // text-align: center;
+
+    // text-align: center;
+    // border: .03rem solid #7d7051;
+    border: 1px solid #7d7051;
+    border-radius: .15rem;
+    background: #524c3e;
+    // outline: none;
+    cursor: pointer;
+    &.is-active {
+        background: #736b50;
+    }
+    &::after {
+        content: "立即打开";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        font-size: .28rem;
+        height: .28rem;
+        line-height: .28rem;
+        color: #e0c37e;
+    }
+}

@@ -1,0 +1,69 @@
+.live-recommendList {
+    overflow: hidden;
+    background: #ededed;
+    &::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+    .live-recommendList__head {
+        font-size: 0.28rem;
+        color: #2e2e2e;
+        height: .88rem;
+        line-height: .88rem;
+        padding: 0 .20rem;
+        overflow: hidden;
+        user-select: none;
+    }
+    .live-recommendList__item {
+        float: left;
+        width: 50%;
+        a {
+            display: block;
+            background: #f7f7f7;
+        }
+        &:nth-child(2n+1) {
+            padding-right: 2px;
+        }
+        &:nth-child(2n) {
+            padding-left: 2px;
+        }
+    }
+    .live-recommendList__img {
+        position: relative;
+        padding-bottom: 100%;
+        background-color: #f5f5f5;
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            font-size: 0.28rem;
+        }
+    }
+    .live-recommendList__nick {
+        font-size: 0.24rem;
+        height: 0.76rem;
+        padding: 0 0.18rem 0.16rem;
+        line-height: 0.60rem;
+        overflow: hidden;
+        word-break: normal;
+        word-wrap: normal;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        // &::after {
+        //     content: "";
+        //     clear: both;
+        //     display: table;
+        // }
+    }
+    .live-recommendList__count {
+        font-size: 0.20rem;
+        color: #484848;
+        height: 0.60rem;
+        line-height: 0.60rem;
+        float: right;
+        margin-left: 0.1rem;
+    }
+}

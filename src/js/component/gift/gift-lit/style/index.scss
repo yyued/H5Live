@@ -1,0 +1,173 @@
+.live-gift {
+    position: absolute;
+    left: 0.2rem;
+    bottom: 4.3rem;
+    height: 1.64rem;
+    pointer-events: none;
+}
+
+.live-gift__item {
+    position: relative;
+    width: 3.84rem;
+    height: 0.64rem;
+    transform: translateX(-4.5rem);
+    background-color: rgba(46, 46, 46, 0.6);
+    border-radius: 0.32rem;
+    transition: opacity 0.3s ease-out 0.2s;
+    &.ext-pos1 {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+    }
+    &.ext-pos2 {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    &.gift-ani {
+        animation-name: giftAni;
+        animation-duration: 0.3s;
+        animation-timing-function: ease-out;
+        animation-fill-mode: forwards;
+    }
+
+    &.is-hide {
+        opacity: 0;
+    }
+}
+
+@keyframes giftAni{
+    0% {
+        transform: translateX(-4.5rem);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.live-gift__userImg {
+    position: absolute;
+    left: 0.02rem;
+    top: 0.02rem;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+}
+
+.live-gift__userName {
+    width: 2.44rem;
+    font-size: 0.24rem;
+    line-height: 0.3rem;
+    color: #e0b66c;
+    font-weight: 500;
+    padding: 0.05rem 0 0 0.76rem;
+    white-space: nowrap;
+    word-wrap: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+}
+
+.live-gift__giftName {
+    width: 2.44rem;
+    font-size: 0.2rem;
+    color: #fff;
+    line-height: 0.26rem;
+    padding-left: 0.76rem;
+    white-space: nowrap;
+    word-wrap: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    font-weight: 400;
+    span {
+        margin-left: 0.08rem;
+        color: #ffdda0;
+        font-weight: 500;
+    }
+}
+
+.live-gift__giftImg {
+    position: absolute;
+    left: 2.5rem;
+    top: -0.15rem;
+    width: 0.9rem;
+    height: 0.9rem;
+}
+
+.live-gift__giftNum {
+    position: absolute;
+    left: 3.5rem;
+    top: 0.09rem;
+    width: 2rem;
+    height: 0.44rem;
+    line-height: 0.44rem;
+    height: .44rem;
+    font-size: 0.42rem;
+    color: #ffc40f;
+    font-weight: bold;
+    -webkit-text-stroke: 0.02rem #fff;
+    span {
+        &:nth-of-type(1) {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        &:nth-of-type(2) {
+            position: absolute;
+            top: -.65rem;
+            left: -.4rem;
+            width: 1.9rem;
+            height: 1.86rem;
+            text-align: center;
+            line-height: 2.34rem;
+            // background-image: url(http://page.yy.com/channel/assets/images/combo-effect/level1.png);
+            background-size: 11.4rem 1.86rem;
+        }
+        &:nth-of-type(3) {
+            position: absolute;
+            top: -.9rem;
+            left: .3rem;
+            // width: 2.4rem;
+            height: 2.34rem;
+            // text-align: center;
+            line-height: 2.34rem;
+        }
+    }
+    &.is-ani {
+        span {
+            &:nth-of-type(1) {
+                animation: txtani 0.25s ease-out 0s;
+                animation-fill-mode: forwards;
+            }
+            &:nth-of-type(2) {
+                animation: giftani 0.25s steps(6,end) 0s;
+            }
+
+            &:nth-of-type(3) {
+                animation: txtani 0.25s ease-out 0s;
+                animation-fill-mode: forwards;
+            }
+        }
+    }
+}
+
+@keyframes giftani {
+    from{
+        background-position: 0 0;
+    }
+    to {
+        background-position: -11.4rem 0;
+    }
+}
+
+@keyframes txtani {
+    from{
+        opacity: 0;
+        transform: scale(2.4);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}

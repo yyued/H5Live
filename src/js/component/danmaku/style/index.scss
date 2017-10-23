@@ -1,0 +1,83 @@
+.live-danmaku {
+    position: absolute;
+    left: 0;
+    top: 3rem;
+    width: 100%;
+    height: 1.2rem;
+    word-break: normal;
+    word-wrap: normal;
+    white-space:nowrap;
+    pointer-events: none;
+    // HACK: camera pc mode
+    .camera-pc ~ & {
+        top: 1.3rem;
+    }
+}
+
+// .live-danmaku__row {
+//     position: absolute;
+//     left: 100%;
+//     height: 0.54rem;
+//     word-break: normal;
+//     word-wrap: normal;
+//     white-space:nowrap;
+//     &.ext-row1 {
+//         bottom: 0;
+//     }
+//     &.ext-row2 {
+//         top: 0;
+//     }
+// }
+
+// .live-danmaku__rowInner {
+//     height: 0.54rem;
+// }
+
+.live-danmaku__item {
+    display: inline-block;
+    position: absolute;
+    height: 0.54rem;
+    left: 100%;
+    padding-right: 0.24rem;
+    margin-right: 0.24rem;
+    background-color: rgba(46, 46, 46, 0.6);
+    border-radius: 0.26rem;
+    vertical-align: top;
+    font-size: 0;
+    transition: transform 8s linear;
+}
+
+.live-danmaku__userImg {
+    position: absolute;
+    left: 0.03rem;
+    top: 0.05rem;
+    width: 0.44rem;
+    height: 0.44rem;
+    border-radius: 50%;
+}
+
+.live-danmaku__userName {
+    display: inline-block;
+    vertical-align: top;
+    max-width: 3rem;
+    height: 0.54rem;
+    padding: 0 0.18rem 0 0.54rem;
+    font-size: 0.32rem;
+    color: #e0b66c;
+    font-weight: 500;
+    line-height: 0.56rem;
+    white-space: nowrap;
+    word-wrap: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+}
+
+.live-danmaku__userComm {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 0.32rem;
+    color: #fff;
+    font-weight: 500;
+    line-height: 0.56rem;
+}

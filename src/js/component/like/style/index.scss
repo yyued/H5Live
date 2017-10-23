@@ -1,0 +1,9 @@
+.live-like {
+    canvas {
+        transform-origin : 100% 100%;
+        pointer-events: none;
+        position: absolute;
+        bottom: 0.46rem;
+        right : 0;
+    }
+}

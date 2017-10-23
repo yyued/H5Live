@@ -1,0 +1,44 @@
+html, body {
+    min-width: 320px;
+    max-width: 750px;
+}
+
+.live-content {
+    width: 100%;
+    position: relative;
+    // padding-top: 1.1rem;
+    background: #2e2e2e;
+    overflow: hidden;
+    user-select: none;
+}
+.live-player__uid,
+.live-player__nick,
+.live-player__avatar,
+.live-player__status,
+.live-player__playBtn {
+    z-index: 2;// 覆盖遮罩或者边框等UI元素
+}
+.live-chatBar__switch {
+    span {
+        z-index: 2;// 覆盖遮罩或者边框等UI元素
+    }
+}
+.live-giftPanel__cover,
+.live-giftPanel__border {
+    z-index: 2;// 覆盖遮罩或者边框等UI元素
+}
+.live-giftPanel__present {
+    z-index: 6;// 涉及动画的层级
+}
+.live-giftPanel__comboWrap {
+    z-index: 5;// 涉及动画的层级
+}
+.live-giftPanel__comboButton {
+    z-index: 7;// 涉及动画的层级
+}
+.live-topBar {
+    z-index: 9;// 保持层级置顶
+}
+.live-downloadTips {
+    z-index: 9;// 保持层级置顶
+}

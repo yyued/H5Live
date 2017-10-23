@@ -1,0 +1,2 @@
+/*TMODJS:{"version":23,"md5":"70578f14d1f9b87024e9fa43e9f08545"}*/
+template("/Users/liveme/Sites/git@H5Live/src/js/component/danmaku/tpl/index",function(a){"use strict";var b=this,c=(b.$helpers,b.$escape),d=a.headerUrl,e=a.nick,f=a.userComm,g="";return g+='<img src="',g+=c(d),g+='" alt="',g+=c(e),g+='" class="live-danmaku__userImg"> <p class="live-danmaku__userName">',g+=c(e),g+='</p> <p class="live-danmaku__userComm">',g+=c(f),g+="</p> ",new String(g)});

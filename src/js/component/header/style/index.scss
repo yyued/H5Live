@@ -1,0 +1,93 @@
+@mixin ellipsis($width: auto) {
+    @if($width) {
+        max-width: $width;
+    }
+    white-space: nowrap;
+    word-wrap: normal;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    text-align: left;
+}
+
+.live-header {
+    position: absolute;
+    // top: .4rem + 1.1rem;
+    top: .15rem;
+    left: 0;
+    width: 100%;
+    padding: 0 .2rem;
+}
+.live-hostInfo {
+    float: left;
+    position: relative;
+    padding: .09rem .1rem;
+    // padding-right: .06rem + .72rem + .14rem;
+    left: .08rem;
+    // height: 0.62rem;
+    // padding-right: .92rem;
+    // padding-left: .1rem;
+    border-radius: .1rem;
+    background: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    font-size: 0;
+}
+.live-hostInfo__avatar {
+    display: inline-block;
+    vertical-align: top;
+    width: .56rem;
+    height: .56rem;
+    border-radius: 50%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    position: relative;
+    // top: 50%;
+    // transform: translateY(-50%);
+}
+.live-hostInfo__cnt {
+    margin-left: .1rem;
+    display: inline-block;
+    vertical-align: top;
+    // font-size: .20rem;
+    font-size: .24rem;
+    line-height: .28rem;
+    position: relative;
+    // top: 50%;
+    // transform: translateY(-50%);
+    // margin-top: .04rem;
+}
+.live-hostInfo__nick {
+    @include ellipsis(1.5rem);
+    font-weight: 700;
+}
+.live-hostInfo__online {
+    @include ellipsis(1.5rem);
+}
+.live-hostInfo__follow {
+    // position: absolute;
+    // top: 50%;
+    // right: .06rem;
+    // transform: translate(0, -50%);
+    display: inline-block;
+    margin-left: .08rem;
+    width: .72rem;
+    height: .56rem;
+    line-height: .56rem;
+    text-align: center;
+    border-radius: .1rem;
+    font-size: .24rem;
+    background-color: rgba(256, 256, 256, 1);
+    color: #2e2e2e;
+    font-weight: 500;
+}
+.live-uid {
+    position: absolute;
+    // top: .05rem;
+    top: .03rem;
+    right: .4rem;
+    right: .3rem;
+    font-size: .24rem;
+    color: #fff;
+    // text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 0 1px rgba(0, 0, 0, 1);
+}
