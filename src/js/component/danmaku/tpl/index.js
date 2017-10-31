@@ -1,8 +1,8 @@
 let renderTpl = (data)=>{
     let tpl = `
-        <img src="${data.headerUrl}" alt="${data.nick}" class="live-danmaku__userImg">
-        <p class="live-danmaku__userName">${data.nick}</p>
-        <p class="live-danmaku__userComm">${data.userComm}</p>
+        <img src="${data.avatar}" alt="${data.nick}" class="live-danmaku__avatar">
+        <p class="live-danmaku__nick">${data.nick}</p>
+        <p class="live-danmaku__content">${data.content}</p>
     `;
     return tpl;
 }

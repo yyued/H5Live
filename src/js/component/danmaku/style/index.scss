@@ -47,7 +47,7 @@
     transition: transform 8s linear;
 }
 
-.live-danmaku__userImg {
+.live-danmaku__avatar {
     position: absolute;
     left: 0.03rem;
     top: 0.05rem;
@@ -56,7 +56,7 @@
     border-radius: 50%;
 }
 
-.live-danmaku__userName {
+.live-danmaku__nick {
     display: inline-block;
     vertical-align: top;
     max-width: 3rem;
@@ -73,7 +73,7 @@
     text-align: left;
 }
 
-.live-danmaku__userComm {
+.live-danmaku__content {
     display: inline-block;
     vertical-align: top;
     font-size: 0.32rem;

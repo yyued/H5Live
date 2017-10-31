@@ -122,11 +122,11 @@ export default {
     init(socket) {
         let danmaku = main.initQueue();
         socket.ioSocket.on(socket.socketName, (data) => {
-            let {nick, headerUrl, userComm} = data.data;
+            let {nick, avatar, content} = data.data;
             let danmakuItemObj = {
                 "nick": nick,
-                "headerUrl": headerUrl,
-                "userComm": userComm
+                "avatar": avatar,
+                "content": content
             }
             main.addQueue(danmakuItemObj, danmaku, true);
         });
