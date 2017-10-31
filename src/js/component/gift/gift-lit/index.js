@@ -102,15 +102,15 @@ let main = {
 
     // 加入队列
     addQueue: (data, giftLitle, isLast) => {
-        let {nick, headerUrl, propId, propCount, expand} = data.data;
+        let {nick, avatar, propId, propCount, comboId} = data.data;
         let giftItemObj = {
             "propId": propId,
             "nick":nick,
-            "headerUrl": headerUrl,
+            "avatar": avatar,
             "giftNum": propCount,
             "giftName": giftMap[propId].name,
             "giftImg": giftMap[propId].thumb,
-            "comboId": expand.comboId
+            "comboId": comboId
         };
 
         if(isLast) {
@@ -162,7 +162,7 @@ let main = {
         if(giftMap[data.propId]) {
             let svga = giftMap[data.propId].svga;
             if(!svga) {
-                let comboId = data.expand.comboId;
+                let comboId = data.comboId;
                 if(comboId == main.comboId['line1']) {
                     main.comboObj['line1'].update(data.propCount);
                 } else if(comboId == main.comboId['line2']) {
