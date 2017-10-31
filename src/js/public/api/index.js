@@ -18,7 +18,6 @@ let jsonpPromise = (url) => {
 
 let socketPromise = (key, socketName) => {
     let ioUrl = 'http://legox.org:5353';
-    let ioSocket = io.connect(ioUrl);
     return new Promise(( resolve ) => {
         let ioSocket = io.connect(ioUrl);
         ioSocket.emit(socketName,{ key: key, time: 8000 });
@@ -43,8 +42,8 @@ window.RequqestApi = {
 
     // 获取直播状态
     getLiveStatus(){
-        // return jsonpPromise('https://legox.org/mock/a3e67a40-863c-11e7-9085-0ba4558c07dc');
-        return jsonpPromise('https://legox.org/mock/fbec5f60-b3c9-11e7-ba75-c111f832c2e3');
+        return jsonpPromise('https://legox.org/mock/a3e67a40-863c-11e7-9085-0ba4558c07dc');
+        // return jsonpPromise('https://legox.org/mock/fbec5f60-b3c9-11e7-ba75-c111f832c2e3');
     },
 
     // 获取登录用户信息

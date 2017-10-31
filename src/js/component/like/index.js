@@ -4,8 +4,8 @@
  */
 
 import style from './style/index.scss';
-import anim from './modules/anim.js'; //点赞动画
-import frequent from './modules/frequent.js';
+import anim from './module/anim.js'; //点赞动画
+import frequent from './module/frequent.js';
 
 const componentLike = document.querySelector('[data-component="like"]');
 

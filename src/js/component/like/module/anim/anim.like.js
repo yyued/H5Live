@@ -7,7 +7,7 @@ import {
     getRandomByMedian,
     getRandomBetweenInt,
     getRandomWithBinomial,
-} from './modules/random.js';
+} from './random.js';
 
 // 点赞动画引擎
 class Like {

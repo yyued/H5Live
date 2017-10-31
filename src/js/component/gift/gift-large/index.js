@@ -5,9 +5,7 @@
 
 import Event from '../../../lib/event/index.js';
 import style from'./style/index.scss';
-
-const urlSVGA = '/assets/js/svga/svga.min.js';
-const urlSVGADB = '/assets/js/svga/svga-db.min.js';
+import config from'./config.js';
 
 const componentSVGAPlayer = document.querySelector('[data-component="SVGAPlayer"]');
 
@@ -25,24 +23,8 @@ let loadSVGA;
 export default {
     init ( giftSocket, giftMapObj ) {
         loadSVGA = Promise.all([
-            new Promise(( resolve ) => {
-                let script = document.createElement('script');
-                script.src = urlSVGA;
-                script.onload = () => {
-                    document.head.removeChild(script);
-                    resolve();
-                };
-                document.head.appendChild(script);
-            }),
-            new Promise(( resolve ) => {
-                let script = document.createElement('script');
-                script.src = urlSVGADB;
-                script.onload = () => {
-                    document.head.removeChild(script);
-                    resolve();
-                };
-                document.head.appendChild(script);
-            }),
+            util.preloadScript(config.urlSVGA),
+            // util.preloadScript(config.urlSVGADB),
         ]);
         return new Promise(( resolve ) => {
             componentSVGAPlayer.innerHTML = `<style>${ style }</style>`;
@@ -108,32 +90,37 @@ function getSVGA ( url ) {
                 let canvas = document.createElement('canvas');
                 canvas.id = `svga-player__${ Object.keys(cache).length }`;
                 canvas.width = canvas.height = 500;
+                canvas.style.width = `400px`;
+                canvas.style.height = `400px`;
+                canvas.clearsAfterStop = true;
                 componentSVGAPlayer.appendChild(canvas);
-                let player = cache[url] = new Svga({
-                    worker : 'assets/js/svga/svga-worker.min.js',
-                    canvas : `#${ canvas.id }`,
-                    assets : a.href,
-                    playCount : 1,
-                    autoPlay : false,
-                    loop : false,
-                }, () => {
+
+                var player = new SVGA.Player(`#${ canvas.id }`);
+                var parser = new SVGA.Parser();
+                player.loops = 1;
+                parser.load(url, function(videoItem) {
                     player.canvas = canvas;
                     componentSVGAPlayer.removeChild(canvas);
                     canvas.classList.add('is-active');
-                    resolve(player);
-                });
+                    resolve({
+                        player,
+                        videoItem,
+                    });
+                })
             }
         });
     }).catch((err) => console.log(err));
 }
 
-function playSVGA ( player ) {
+function playSVGA ( options ) {
+    let {player, videoItem} = options;
     return new Promise(( resolve ) => {
         componentSVGAPlayer.appendChild(player.canvas);
-        player.complete = () => {
+        player.onFinished(() => {
             componentSVGAPlayer.removeChild(player.canvas);
             resolve();
-        };
-        player.play();
+        });
+        player.setVideoItem(videoItem);
+        player.startAnimation();
     }).catch((err) => console.log(err));
 }

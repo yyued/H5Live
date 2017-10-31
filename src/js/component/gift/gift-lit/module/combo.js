@@ -97,4 +97,4 @@ combo.prototype = {
     }
 }
 
-module.exports = combo;
+export default combo;

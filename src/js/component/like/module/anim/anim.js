@@ -3,7 +3,7 @@
  * @author lixinliang
  */
 
-import Ticker from './modules/ticker.js';
+import Ticker from './ticker.js';
 
 const DPR = window.devicePixelRatio || 1;
 

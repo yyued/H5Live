@@ -80,7 +80,8 @@ export default {
 
         this.addSystem(config.systemMessage);
         socket.ioSocket.on(socket.socketName, ( data ) => {
-            this.addChat(data.data.nick, data.data.content);
+            let {nick, content} = data.data;
+            this.addChat(nick, content);
         });
     },
     add ( text, insertBefore ) {

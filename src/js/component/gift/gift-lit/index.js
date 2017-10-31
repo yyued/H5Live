@@ -4,117 +4,92 @@
  */
 
 import sprite from '../../../lib/sprite/index.js'; // 礼物动画
-import combo from './lib/combo.js'; // 礼物连击
+import combo from './module/combo.js'; // 礼物连击
 import style from'./style/index.scss';
 import createTpl from './tpl/index.js';
 
 const componentGift = document.querySelector('[data-component="gift"]');
 componentGift.innerHTML = `<style>${style}</style>`;
 
+let giftMap = null;
+
 let main = {
     // 创建dom
-    create: (data, pos) => {
-        if(pos == 1) {
-            main.pos1Comboid = data.comboId;
-        } else {
-            main.pos2Comboid = data.comboId;
-        }
-
+    create: (data, position) => {
+        main.comboId[`line${position}`] = data.comboId;
         let giftItem = document.createElement('div');
-        giftItem.setAttribute('class', `live-gift__item ext-pos${pos} gift-ani`);
+        giftItem.setAttribute('class', `live-gift__item ext-line${position} gift-ani`);
         const tpl = createTpl(data);
         giftItem.innerHTML = tpl;
         componentGift.appendChild(giftItem);
     },
 
-    // pos1的comboid
-    pos1Comboid: '',
+    // 礼物连送ID
+    comboId: {
+        'line1': '',
+        'line2': '',
+    },
 
-    // pos2的comboid
-    pos2Comboid: '',
-
-    // 连击对象
-    comboObj1: null,
-    comboObj2: null,
+    // 礼物连送对象
+    comboObj: {
+        'line1': null,
+        'line2': null,
+    },
 
     // 礼物位置数
     giftQueueNum: 0,
 
+    // 礼物推送
+    pushGift: (queue, position) => {
+        // 创建礼物dom,并指定显示位置
+        main.create(queue.task, position);
+        let currentGiftElement = document.querySelector(`.ext-line${position}`);
+        let giftImgDom = currentGiftElement.querySelector('.live-gift__giftImg'); // 礼物图片动画
+        let aniDom = currentGiftElement.querySelector('.live-gift__giftNum');
+        let comboImgDom = aniDom.children[1];
+        let originalDom = aniDom.children[2];
+
+        sprite(giftImgDom, giftMap[queue.task.propId].spriteImage, giftMap[queue.task.propId].spriteDuration);
+        giftImgDom.dataset.status = 'play';
+
+        main.comboObj[`line${position}`] = new combo({
+            endNum: queue.task.giftNum,
+            aniDom: aniDom,
+            comboImgDom: comboImgDom,
+            numDom: originalDom,
+            cb: function(aniDom) {
+                currentGiftElement.classList.add('is-hide');
+
+                //重置
+                main.comboObj[`line${position}`] = null;
+                main.comboId[`line${position}`] = '';
+
+                setTimeout(() => {
+                    componentGift.removeChild(currentGiftElement);
+                    queue.callback(queue.task);
+                }, 500);
+            }
+        })
+    },
+
     // 初始化队列
-    initQueue: (giftMapObj) => {
+    initQueue: () => {
         let timer = null;
         //礼物消息队列
         let giftLit = queue.queue(function (task, callback) {
-            let extPos1Dom = document.querySelector('.ext-pos1');
-            let extPos2Dom = document.querySelector('.ext-pos2');
+            let extPos1Dom = document.querySelector('.ext-line1');
+            let extPos2Dom = document.querySelector('.ext-line2');
+            let currentQuene = {
+                task,
+                callback,
+            };
 
             main.giftQueueNum++;
             if(main.giftQueueNum <= 2) {
                 if(extPos1Dom) {
-                    // 创建礼物dom,并指定显示位置
-                    main.create(task, 2);
-                    let extPos2Dom = document.querySelector('.ext-pos2');
-                    let aniDom = extPos2Dom.querySelector('.live-gift__giftNum'),
-                        comboImgDom = aniDom.children[1],
-                        originalDom = aniDom.children[2];
-
-                    // 礼物图片动画
-                    // sprite(extPos2Dom.querySelector('.live-gift__giftImg'), giftMapObj[task.propId].sequenceIcon, giftMapObj[task.propId].sequenceInterval);
-                    let giftImgDom = extPos2Dom.querySelector('.live-gift__giftImg');
-                    sprite(giftImgDom, giftMapObj[task.propId].spriteIcon, 100);
-                    giftImgDom.dataset.status = 'play';
-
-                    main.comboObj2 = new combo({
-                        endNum: task.giftNum,
-                        aniDom: aniDom,
-                        comboImgDom: comboImgDom,
-                        numDom: originalDom,
-                        cb: function(aniDom) {
-                            extPos2Dom.classList.add('is-hide');
-
-                            //重置
-                            main.comboObj2 = null;
-                            main.pos2Comboid = '';
-
-                            setTimeout(() => {
-                                componentGift.removeChild(extPos2Dom);
-                                callback(task);
-                            }, 500);
-                        }
-                    })
+                    main.pushGift(currentQuene, 2);
                 } else {
-                    // 创建礼物dom,并指定显示位置
-                    main.create(task, 1);
-
-                    let extPos1Dom = document.querySelector('.ext-pos1');
-                    let aniDom = extPos1Dom.querySelector('.live-gift__giftNum'),
-                        comboImgDom = aniDom.children[1],
-                        originalDom = aniDom.children[2];
-
-                    // 礼物图片动画
-                    // sprite(extPos1Dom.querySelector('.live-gift__giftImg'), giftMapObj[task.propId].sequenceIcon, giftMapObj[task.propId].sequenceInterval);
-                    let giftImgDom = extPos1Dom.querySelector('.live-gift__giftImg');
-                    sprite(giftImgDom, giftMapObj[task.propId].spriteIcon, 100);
-                    giftImgDom.dataset.status = 'play';
-
-                    main.comboObj1 = new combo({
-                        endNum: task.giftNum,
-                        aniDom: aniDom,
-                        comboImgDom: comboImgDom,
-                        numDom: originalDom,
-                        cb: function(aniDom) {
-                            extPos1Dom.classList.add('is-hide');
-
-                            //重置
-                            main.comboObj1 = null;
-                            main.pos1Comboid = '';
-
-                            setTimeout(() => {
-                                componentGift.removeChild(extPos1Dom);
-                                callback(task);
-                            }, 500);
-                        }
-                    })
+                    main.pushGift(currentQuene, 1);
                 }
             } else {
                 // 超出队列显示，队列暂停
@@ -126,15 +101,15 @@ let main = {
     },
 
     // 加入队列
-    addQueue: (data, giftMapObj, giftLitle, isLast) => {
+    addQueue: (data, giftLitle, isLast) => {
         let {nick, headerUrl, propId, propCount, expand} = data.data;
         let giftItemObj = {
             "propId": propId,
             "nick":nick,
             "headerUrl": headerUrl,
             "giftNum": propCount,
-            "giftName": giftMapObj[propId].name,
-            "giftImg": giftMapObj[propId].staticIcon,
+            "giftName": giftMap[propId].name,
+            "giftImg": giftMap[propId].thumb,
             "comboId": expand.comboId
         };
 
@@ -183,17 +158,17 @@ let main = {
     },
 
     // 礼物推送判断
-    giftHandle: (data, giftMapObj, giftLit, callback) => {
-        if(giftMapObj[data.propId]) {
-            let svga = giftMapObj[data.propId].svga;
+    giftHandle: (data, giftLit, callback) => {
+        if(giftMap[data.propId]) {
+            let svga = giftMap[data.propId].svga;
             if(!svga) {
                 let comboId = data.expand.comboId;
-                if(comboId == main.pos1Comboid) {
-                    main.comboObj1.update(data.propCount);
-                } else if(comboId == main.pos2Comboid) {
-                    main.comboObj2.update(data.propCount);
+                if(comboId == main.comboId['line1']) {
+                    main.comboObj['line1'].update(data.propCount);
+                } else if(comboId == main.comboId['line2']) {
+                    main.comboObj['line2'].update(data.propCount);
                 } else {
-                    callback(data, giftMapObj, giftLit);
+                    callback(data, giftMap, giftLit);
                 }
             }
         } else {
@@ -207,6 +182,7 @@ let onSendGift = function () {};
 export default {
     // 初始化
     init(socket, giftMapObj) {
+        giftMap = giftMapObj;
         if (componentGift.matches('.camera-pc ~ [data-component="gift"]')) {
             // HACK: camera pc mode
             const videoHeight = document.querySelector('[data-component="player"]').dataset.videoHeight;
@@ -217,29 +193,30 @@ export default {
             componentGift.style['margin-top'] = `-10px`;
         }
 
-        let giftLit = main.initQueue(giftMapObj);
+        let giftLit = main.initQueue();
 
         socket.ioSocket.on(socket.socketName, (data) => {
-            main.giftHandle(data.data, giftMapObj, giftLit, function() {
+            main.giftHandle(data.data, giftLit, function() {
+                let {uid, nick, propId} = data.data;
                 onSendGift({
-                    uid: data.data.uid,
-                    nickname: data.data.nick,
-                    name: giftMapObj[data.data.propId].name,
+                    uid: uid,
+                    nickname: nick,
+                    name: giftMap[propId].name,
                 });
-                main.addQueue(data, giftMapObj, giftLit, true);
+                main.addQueue(data, giftLit, true);
             })
         });
 
         // 礼物面板送礼优先显示
         // this.unShiftQueue = (data) => {
-        //     main.giftHandle(data, giftMapObj, giftLit, function() {
-        //         main.addQueue(data, giftMapObj, giftLit, false);
+        //     main.giftHandle(data, giftLit, function() {
+        //         main.addQueue(data, giftLit, false);
         //     })
         // };
     },
     destroy () {
         componentGift.style['display'] = 'none';
-	},
+    },
     onSendGift ( callback ) {
         onSendGift = callback;
     },

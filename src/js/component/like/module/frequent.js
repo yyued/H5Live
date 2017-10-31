@@ -10,5 +10,4 @@ let frequent = (fn, delay) => {
         }
     });
 }
-
-module.exports = frequent;
+export default frequent;

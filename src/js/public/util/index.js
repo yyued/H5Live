@@ -10,6 +10,7 @@ import scrollTo from './scroll-to.js';
 import sprite from './sprite.js';
 import getUrlParam from './get-url-param.js';
 import isAndroid from './detect-android.js';
+import preloadScript from './preload-script.js';
 
 window.util = {
     jsonp,
@@ -19,4 +20,5 @@ window.util = {
     sprite,
     getUrlParam,
     isAndroid,
+    preloadScript,
 }

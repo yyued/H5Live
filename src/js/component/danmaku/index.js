@@ -49,13 +49,6 @@ let main = {
         return danmakuItem;
     },
 
-    // 睡眠
-    sleep: (delay) => {
-        return new Promise(( resolve ) => {
-            setTimeout(resolve, delay);
-        });
-    },
-
     // 初始化队列
     initQueue: () => {
         const speed = 96;
@@ -84,7 +77,7 @@ let main = {
             }
 
             main.slotArr = slotArr;
-            main.sleep(Math.floor(durationTime * 1000 / 1.3)).then(() => {
+            util.sleep(Math.floor(durationTime * 1000 / 1.3)).then(() => {
                 main.followUp(wrapDom, minPos, danmaku)
             })
             callback(danmakuItem, slotArr, durationTime);
@@ -104,7 +97,7 @@ let main = {
                     }
                 }
 
-                main.sleep(Math.ceil(durationTime * 1000)).then(() => {
+                util.sleep(Math.ceil(durationTime * 1000)).then(() => {
                     danmakuElement.removeChild(danmakuItem)
                 });
             });
@@ -117,7 +110,7 @@ let main = {
                     }
                 }
 
-                main.sleep(Math.ceil(durationTime * 1000)).then(() => {
+                util.sleep(Math.ceil(durationTime * 1000)).then(() => {
                     danmakuElement.removeChild(danmakuItem)
                 });
             });
@@ -129,10 +122,11 @@ export default {
     init(socket) {
         let danmaku = main.initQueue();
         socket.ioSocket.on(socket.socketName, (data) => {
+            let {nick, headerUrl, userComm} = data.data;
             let danmakuItemObj = {
-                "nick": data.data.nick,
-                "headerUrl": data.data.headerUrl,
-                "userComm": data.data.userComm
+                "nick": nick,
+                "headerUrl": headerUrl,
+                "userComm": userComm
             }
             main.addQueue(danmakuItemObj, danmaku, true);
         });

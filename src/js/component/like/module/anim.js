@@ -1,5 +1,6 @@
 import Anim from './anim/anim.js'; // 创建一个canvas
 import Like from './anim/anim.like.js'; // 点赞效果的逻辑代码
+import config from '../config.js';
 
 // 把点赞引擎添加 animjs 上
 Anim.setup('like', Like);
@@ -14,22 +15,18 @@ export default anim;
 
 function mainfest () {
     let result = {};
-    let user = append.call(result, 'user', 3);
-    let audience = append.call(result, 'audience', 7);
+    let user = append.call(result, 'user', config.likeImgUserNum);
+    let audience = append.call(result, 'audience', config.likeImgAudienceNum);
     mainfest.group = { user, audience };
     return result;
 }
 
 function append ( directory, length ) {
-    // 点赞资源地址
-    const baseImageUrl = './assets/img/like/heart/';
-    const defaultFileName = 'like';
-    const defaultFileType = 'png';
     return Array.apply(null, { length }).map((value, index) => fixed(index + 1 + '')).map((id) => {
         let key = directory + id;
-        this[key] = [baseImageUrl, directory, '/', defaultFileName, id, '.', defaultFileType].join('');
-        return key
-    })
+        this[key] = config.likeImg[key];
+        return key;
+    });
 }
 
 function fixed ( value ) {

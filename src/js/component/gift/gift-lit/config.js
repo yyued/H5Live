@@ -8,23 +8,23 @@ let config = {
     levelMap: [
         {
             "levelNum": 1,
-            "levelImg": "http://legox.yy.com/assets/lab/h5live/assets/img/gift-lit/level1.png"
+            "levelImg": "https://legox.org/assets/project/h5live/img/gift-lit/level1.png"
         },
         {
             "levelNum": 10,
-            "levelImg": "http://legox.yy.com/assets/lab/h5live/assets/img/gift-lit/level2.png"
+            "levelImg": "https://legox.org/assets/project/h5live/img/gift-lit/level2.png"
         },
         {
             "levelNum": 20,
-            "levelImg": "http://legox.yy.com/assets/lab/h5live/assets/img/gift-lit/level3.png"
+            "levelImg": "https://legox.org/assets/project/h5live/img/gift-lit/level3.png"
         },
         {
             "levelNum": 30,
-            "levelImg": "http://legox.yy.com/assets/lab/h5live/assets/img/gift-lit/level4.png"
+            "levelImg": "https://legox.org/assets/project/h5live/img/gift-lit/level4.png"
         },
         {
             "levelNum": 40,
-            "levelImg": "http://legox.yy.com/assets/lab/h5live/assets/img/gift-lit/level5.png"
+            "levelImg": "https://legox.org/assets/project/h5live/img/gift-lit/level5.png"
         }
     ],
 
