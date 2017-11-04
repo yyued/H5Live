@@ -26,6 +26,11 @@ js/
 └── main.js //主入口
 ````
 
+````html
+<script src="https://s1.yy.com/ued_web_static/lib/anti-hijack/index.js"></script>
+<script>new LegoAntiHijack();</script>
+````
+
 ## Issues
 
 如有使用问题或建议，欢迎提issues
