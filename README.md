@@ -31,6 +31,14 @@ js/
 <script>new LegoAntiHijack();</script>
 ````
 
+````html
+<script>
+new LegoAntiHijack({
+    whiteList: ['xxx.yy.com']
+});
+</script>
+````
+
 ## Issues
 
 如有使用问题或建议，欢迎提issues
